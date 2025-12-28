@@ -26,7 +26,8 @@ app.use(limiter);
 
 // CORS configuration
 app.use(cors({
-    origin: "*"
+    origin: process.env.FRONTEND_URL || 'https://zk-vote-sepia.vercel.app/',
+    credentials: true
 }));
 
 // Body parser
