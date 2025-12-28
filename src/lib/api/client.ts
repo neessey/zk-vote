@@ -4,7 +4,7 @@ import axios, {
 } from "axios";
 
 const API_URL =
-    process.env.NEXT_PUBLIC_API_URL || "zk-vote-production.up.railway.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://zk-vote-production.up.railway.app";
 
 export const apiClient = axios.create({
     baseURL: API_URL,

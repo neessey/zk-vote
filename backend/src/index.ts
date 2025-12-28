@@ -35,9 +35,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/auth', authRoutes);
-app.use('/elections', electionRoutes);
-app.use('/votes', voteRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/elections', electionRoutes);
+app.use('/api/votes', voteRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
