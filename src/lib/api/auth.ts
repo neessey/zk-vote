@@ -2,7 +2,7 @@ import { apiClient } from './client';
 import { AuthResponse, User } from '@/types';
 
 const API_URL =
-    process.env.NEXT_PUBLIC_API_URL || "zk-vote-production.up.railway.app";
+    process.env.NEXT_PUBLIC_API_URL || "https://zk-vote-production.up.railway.app";
 
 export const authApi = {
     register: async (email: string, password: string, role: 'admin' | 'votant' = 'votant'): Promise<AuthResponse> => {
