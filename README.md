@@ -1,8 +1,9 @@
-ZK-Vote - Plateforme de Vote Électronique Sécurisée
+# ZK-Vote - Plateforme de Vote Électronique Sécurisée
+
 Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour garantir l'anonymat total des votants tout en permettant la vérification publique des résultats.
 
-🚀 Technologies
-Frontend
+# 🚀 Technologies
+# Frontend
 Next.js 14 - Framework React
 TypeScript - Typage statique
 Tailwind CSS - Styling
@@ -219,3 +220,5 @@ Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou un
 Pour toute question ou suggestion, contactez-nous !
 
 ZK-Vote - Vote sécurisé et anonyme avec les Zero-Knowledge Proofs 🔒
+
+
