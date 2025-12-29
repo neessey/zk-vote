@@ -26,12 +26,11 @@ app.use(limiter);
 
 // CORS configuration
 
-// Configuration CORS pour Railway + Vercel
 const allowedOrigins = [
-    'http://localhost:3000',                    // Développement local
-    process.env.FRONTEND_URL,                   // Vercel production
-    'https://zk-vote-sepia.vercel.app',            // Remplacez par votre URL
-    'https://zk-vote-git-main-devyans-projects-805b7991.vercel.app'    // Previews Vercel
+    'http://localhost:3000',
+    process.env.NEXT_PUBLIC_API_URL || "https://zk-vote-sepia.vercel.app",
+    'https://zk-vote-sepia.vercel.app',
+    'https://zk-vote-git-main-devyans-projects-805b7991.vercel.app'
 ].filter(Boolean);
 
 app.use(cors({
