@@ -9,30 +9,30 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
 
 - **TypeScript** - Typage statique
 
-**Tailwind CSS** - Styling
+- **Tailwind CSS** - Styling
 
-**shadcn/ui** - Composants UI
+- **shadcn/ui** - Composants UI
 
-**Recharts** - Graphiques
+- **Recharts** - Graphiques
 
-**Zustand** - State management
+- **Zustand** - State management
 
-**Axios** - HTTP client
+- **Axios** - HTTP client
 
 
 ## Backend
 
-**Node.js + Express** - Serveur API
+- **Node.js + Express** - Serveur API
 
-**TypeScript** - Typage statique
+- **TypeScript** - Typage statique
 
-**Supabase (PostgreSQL)** - Base de données
+- **Supabase (PostgreSQL)** - Base de données
 
-**JWT** - Authentification
+- **JWT** - Authentification
 
-**bcrypt** - Hachage des mots de passe
+- **bcrypt** - Hachage des mots de passe
 
-**ZK-Proofs** - Preuves cryptographiques (implémentation simplifiée)
+- **ZK-Proofs** - Preuves cryptographiques (implémentation simplifiée)
 
 
 ## 📋 Fonctionnalités
@@ -40,37 +40,62 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
 ### ✅ Authentification sécurisée
 
 
-**Inscription / Connexion**
+- **Inscription / Connexion**
 
-**Rôles (Admin / Votant)**
+- **Rôles (Admin / Votant)**
 
-**Tokens JWT**
+- **Tokens JWT**
 
 
 ### ✅ Gestion des élections
 
-Création d'élections (admin)
-Définition de la période de vote
-Multiple options de vote
-Activation/désactivation
-✅ Système de vote
 
-Vote anonyme avec ZK-Proofs
-Un seul vote par utilisateur
-Impossible de modifier après soumission
-Hash de vérification
-✅ Résultats et transparence
+- ** Création d'élections (admin)**
+  
+- ** Définition de la période de vote**
+  
+- ** Multiple options de vote**
+  
+- ** Activation/désactivation**
+  
+  
+### ✅ Système de vote
 
-Résultats en temps réel
-Graphiques interactifs (Bar chart, Pie chart)
-Export PDF et CSV
-Vérification publique des votes
-🛠️ Installation
-Prérequis
-Node.js 18+ ou Bun
-Compte Supabase (gratuit)
-1. Cloner le projet
+- ** Vote anonyme avec ZK-Proofs**
+
+- ** Un seul vote par utilisateur**
+
+- ** Impossible de modifier après soumission**
+
+- ** Hash de vérification**
+
+
+### ✅ Résultats et transparence
+
+
+- ** Résultats en temps réel**
+  
+- ** Graphiques interactifs (Bar chart, Pie chart)**
+  
+- ** Export PDF et CSV**
+  
+- ** Vérification publique des votes**
+  
+
+  
+### 🛠️ Installation
+
+- ** Prérequis**
+  
+- ** Node.js 18+ ou Bun**
+  
+- ** Compte Supabase (gratuit)**
+  
+**1. Cloner le projet**
+
+````
 git clone <repository-url>
+````
 
 cd zk-vote
 2. Configuration de Supabase
