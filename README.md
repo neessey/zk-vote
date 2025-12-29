@@ -4,31 +4,50 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
 
 # 🚀 Technologies
  ## Frontend
+ 
 **Next.js 14** - Framework React
+
 **TypeScript** - Typage statique
+
 **Tailwind CSS** - Styling
+
 **shadcn/ui** - Composants UI
+
 **Recharts** - Graphiques
+
 **Zustand** - State management
+
 **Axios** - HTTP client
 
-##Backend
+
+## Backend
 
 **Node.js + Express** - Serveur API
+
 **TypeScript** - Typage statique
+
 **Supabase (PostgreSQL)** - Base de données
+
 **JWT** - Authentification
+
 **bcrypt** - Hachage des mots de passe
+
 **ZK-Proofs** - Preuves cryptographiques (implémentation simplifiée)
 
-##📋 Fonctionnalités
-###✅ Authentification sécurisée
+
+## 📋 Fonctionnalités
+
+### ✅ Authentification sécurisée
+
 
 **Inscription / Connexion**
+
 **Rôles (Admin / Votant)**
+
 **Tokens JWT**
 
-###✅ Gestion des élections
+
+### ✅ Gestion des élections
 
 Création d'élections (admin)
 Définition de la période de vote
