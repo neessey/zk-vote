@@ -5,11 +5,17 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
 # 🚀 Technologies
  ##Frontend
 **Next.js 14** - Framework React
+
 **TypeScript** - Typage statique
+
 **Tailwind CSS** - Styling
+
 **shadcn/ui** - Composants UI
+
 **Recharts** - Graphiques
+
 **Zustand** - State management
+
 **Axios** - HTTP client
 
 ##Backend
