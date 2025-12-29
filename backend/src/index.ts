@@ -12,17 +12,9 @@ import voteRoutes from './routes/votes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
 
-// Security middleware
-app.use(helmet());
 
-// Rate limiting
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100 // limite de 100 requêtes par IP
-});
-app.use(limiter);
 
 // CORS configuration
 
@@ -51,7 +43,11 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
+
+app.options("*", cors());
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Route de test
 app.get('/api/health', (req, res) => {
@@ -64,6 +60,15 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Security middleware
+app.use(helmet());
+
+// Rate limiting
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limite de 100 requêtes par IP
+});
+app.use(limiter);
 
 // Body parser
 app.use(express.json());
@@ -90,7 +95,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ error: 'Erreur serveur interne' });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     console.log(`📡 API disponible sur http://localhost:${PORT}`);
     console.log(`🔒 Mode: ${process.env.NODE_ENV || 'development'}`);
