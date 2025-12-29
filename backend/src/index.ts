@@ -12,53 +12,7 @@ import voteRoutes from './routes/votes';
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT) || 5000;
-
-
-
-// CORS configuration
-
-// Configuration CORS pour Railway + Vercel
-const allowedOrigins: string[] = [
-    "http://localhost:3000",
-    "https://zk-vote-sepia.vercel.app",
-    "https://zk-vote-git-main-devyans-projects-805b7991.vercel.app"
-].filter((o): o is string => typeof o === "string");
-
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", req.headers.origin as string || "*");
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);   // 👈 C'EST ÇA QUI MANQUAIT
-    }
-    next();
-});
-
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
-
-
-app.options("*", cors());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Route de test
-app.get('/api/health', (req, res) => {
-    res.json({
-        status: 'OK',
-        message: 'Backend Railway connecté',
-        timestamp: new Date().toISOString(),
-        environment: process.env.NODE_ENV,
-        corsOrigin: req.headers.origin
-    });
-});
+const PORT = process.env.PORT || 5000;
 
 // Security middleware
 app.use(helmet());
@@ -69,6 +23,12 @@ const limiter = rateLimit({
     max: 100 // limite de 100 requêtes par IP
 });
 app.use(limiter);
+
+// CORS configuration
+app.use(cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true
+}));
 
 // Body parser
 app.use(express.json());
@@ -95,7 +55,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ error: 'Erreur serveur interne' });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
     console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     console.log(`📡 API disponible sur http://localhost:${PORT}`);
     console.log(`🔒 Mode: ${process.env.NODE_ENV || 'development'}`);
