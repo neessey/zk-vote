@@ -3,19 +3,13 @@
 Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour garantir l'anonymat total des votants tout en permettant la vérification publique des résultats.
 
 # 🚀 Technologies
- ##Frontend
+ ## Frontend
 **Next.js 14** - Framework React
-
 **TypeScript** - Typage statique
-
 **Tailwind CSS** - Styling
-
 **shadcn/ui** - Composants UI
-
 **Recharts** - Graphiques
-
 **Zustand** - State management
-
 **Axios** - HTTP client
 
 ##Backend
