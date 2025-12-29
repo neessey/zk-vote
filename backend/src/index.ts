@@ -25,10 +25,45 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
+
+// Configuration CORS pour Railway + Vercel
+const allowedOrigins = [
+    'http://localhost:3000',                    // Développement local
+    process.env.FRONTEND_URL,                   // Vercel production
+    'https://zk-vote-sepia.vercel.app',            // Remplacez par votre URL
+    'https://zk-vote-git-main-devyans-projects-805b7991.vercel.app'    // Previews Vercel
+].filter(Boolean);
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'https://zk-vote-sepia.vercel.app/',
-    credentials: true
+    origin: function (origin, callback) {
+        // Autorise les requêtes sans origin (mobile, Postman, etc.)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.log('❌ Origin non autorisée:', origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.use(express.json());
+
+// Route de test
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        message: 'Backend Railway connecté',
+        timestamp: new Date().toISOString(),
+        environment: process.env.NODE_ENV,
+        corsOrigin: req.headers.origin
+    });
+});
+
 
 // Body parser
 app.use(express.json());
@@ -59,6 +94,7 @@ app.listen(PORT, () => {
     console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     console.log(`📡 API disponible sur http://localhost:${PORT}`);
     console.log(`🔒 Mode: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🚂 Railway server running on port ${PORT}`);
+    console.log('✅ CORS configuré pour:', allowedOrigins);
 });
-
 export default app;
