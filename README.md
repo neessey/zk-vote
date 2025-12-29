@@ -50,60 +50,69 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
 ### ✅ Gestion des élections
 
 
-- ** Création d'élections (admin)**
+- **Création d'élections (admin)**
   
-- ** Définition de la période de vote**
+- **Définition de la période de vote**
   
-- ** Multiple options de vote**
+- **Multiple options de vote**
   
-- ** Activation/désactivation**
+- **Activation/désactivation**
   
   
 ### ✅ Système de vote
 
-- ** Vote anonyme avec ZK-Proofs**
+- **Vote anonyme avec ZK-Proofs**
 
-- ** Un seul vote par utilisateur**
+- **Un seul vote par utilisateur**
 
-- ** Impossible de modifier après soumission**
+- **Impossible de modifier après soumission**
 
-- ** Hash de vérification**
+- **Hash de vérification**
 
 
 ### ✅ Résultats et transparence
 
 
-- ** Résultats en temps réel**
+- **Résultats en temps réel**
   
-- ** Graphiques interactifs (Bar chart, Pie chart)**
+- **Graphiques interactifs (Bar chart, Pie chart)**
   
-- ** Export PDF et CSV**
+- **Export PDF et CSV**
   
-- ** Vérification publique des votes**
+- **Vérification publique des votes**
   
 
   
 ### 🛠️ Installation
 
-- ** Prérequis**
+- **Prérequis**
   
-- ** Node.js 18+ ou Bun**
+- **Node.js 18+ ou Bun**
   
-- ** Compte Supabase (gratuit)**
+- **Compte Supabase (gratuit)**
   
 **1. Cloner le projet**
 
 ````
 git clone <repository-url>
-````
 
 cd zk-vote
-2. Configuration de Supabase
-Créer un projet sur Supabase
-Aller dans SQL Editor
-Exécuter le script backend/supabase-schema.sql
-Récupérer l'URL et les clés API dans Project Settings > API
-3. Backend
+````
+
+### 2. Configuration de Supabase
+
+- Créer un projet sur ### Supabase
+  
+- Aller dans SQL Editor
+  
+-Exécuter le script backend/supabase-schema.sql
+
+-Récupérer l'URL et les clés API dans Project Settings > API
+
+
+### 3. Backend
+
+````
 cd backend
 
 
@@ -131,9 +140,14 @@ bun install
 # Démarrer le serveur
 
 bun run dev
-Le backend sera accessible sur http://localhost:5000
 
-4. Frontend
+````
+
+Le backend sera accessible sur ````http://localhost:5000````
+
+### 4. Frontend
+
+````
 # Dans le dossier racine zk-vote
 
 bun install
@@ -142,7 +156,10 @@ bun install
 # Démarrer le serveur de développement
 
 bun run dev
-Le frontend sera accessible sur http://localhost:3000
+
+````
+
+Le frontend sera accessible sur ```` http://localhost:3000````
 
 📁 Structure du projet
 zk-vote/
