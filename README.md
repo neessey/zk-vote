@@ -101,13 +101,13 @@ cd zk-vote
 
 ### 2. Configuration de Supabase
 
-- Créer un projet sur ### Supabase
+- Créer un projet sur **Supabase**
   
 - Aller dans SQL Editor
   
--Exécuter le script backend/supabase-schema.sql
+- Exécuter le script backend/supabase-schema.sql
 
--Récupérer l'URL et les clés API dans Project Settings > API
+- Récupérer l'URL et les clés API dans Project Settings > API
 
 
 ### 3. Backend
@@ -161,40 +161,7 @@ bun run dev
 
 Le frontend sera accessible sur ```` http://localhost:3000````
 
-📁 Structure du projet
-zk-vote/
-├── backend/                    # API Express
-│   ├── src/
-│   │   ├── config/            # Configuration (Supabase)
-│   │   ├── controllers/       # Logique métier
-│   │   ├── middleware/        # Middleware (auth)
-│   │   ├── routes/            # Routes API
-│   │   ├── types/             # Types TypeScript
-│   │   ├── utils/             # Utilitaires (ZK-Proofs)
-│   │   └── index.ts           # Point d'entrée
-│   ├── supabase-schema.sql    # Schéma de la base de données
-│   └── package.json
-│
-├── src/                        # Frontend Next.js
-│   ├── app/                   # Pages Next.js
-│   │   ├── admin/             # Pages admin
-│   │   ├── dashboard/         # Tableau de bord
-│   │   ├── elections/         # Liste des élections
-│   │   ├── results/           # Résultats
-│   │   ├── vote/              # Page de vote
-│   │   ├── login/             # Connexion
-│   │   └── register/          # Inscription
-│   ├── components/            # Composants React
-│   │   ├── auth/              # Authentification
-│   │   ├── election/          # Élections
-│   │   ├── layout/            # Layout
-│   │   └── ui/                # Composants UI (shadcn)
-│   ├── lib/
-│   │   └── api/               # Services API
-│   ├── stores/                # State management (Zustand)
-│   └── types/                 # Types TypeScript
-│
-└── README.md
+
 🔐 Sécurité
 Zero-Knowledge Proofs - Anonymat garanti
 Helmet - Protection des headers HTTP
@@ -203,57 +170,88 @@ CORS - Configuration sécurisée
 JWT - Authentification sécurisée
 bcrypt - Hachage des mots de passe
 RLS Supabase - Row Level Security
+
+
 📊 Schéma de la base de données
-Tables principales
-users
+---
 
-id (UUID)
-email (VARCHAR)
-password (VARCHAR - hashé)
-role (VARCHAR - 'admin' | 'votant')
-created_at (TIMESTAMP)
-elections
+## 📦 Base de données
 
-id (UUID)
-titre (VARCHAR)
-description (TEXT)
-date_debut (TIMESTAMP)
-date_fin (TIMESTAMP)
-active (BOOLEAN)
-created_by (UUID - FK vers users)
-election_options
+### users
+| Champ      | Type                        |
+|-----------|-----------------------------|
+| id        | UUID                        |
+| email     | VARCHAR                     |
+| password  | VARCHAR (hashé)             |
+| role      | VARCHAR (`admin` | `votant`) |
+| created_at| TIMESTAMP                   |
 
-id (UUID)
-election_id (UUID - FK vers elections)
-label (VARCHAR)
-order (INTEGER)
-votes
+### elections
+| Champ       | Type                  |
+|------------|----------------------|
+| id         | UUID                  |
+| titre      | VARCHAR               |
+| description| TEXT                  |
+| date_debut | TIMESTAMP             |
+| date_fin   | TIMESTAMP             |
+| active     | BOOLEAN               |
+| created_by | UUID (FK vers users)  |
 
-id (UUID)
-election_id (UUID - FK vers elections)
-user_id (UUID - FK vers users)
-option_id (UUID - FK vers election_options)
-zk_proof (TEXT)
-hash_vote (VARCHAR - unique)
-timestamp (TIMESTAMP)
-🎯 API Endpoints
-Auth
-POST /api/auth/register - Inscription
-POST /api/auth/login - Connexion
-GET /api/auth/profile - Profil (authentifié)
-Elections
-GET /api/elections - Liste des élections
-GET /api/elections/:id - Détails d'une élection
-POST /api/elections - Créer (admin)
-PUT /api/elections/:id - Modifier (admin)
-DELETE /api/elections/:id - Supprimer (admin)
-GET /api/elections/:id/results - Résultats
-Votes
-POST /api/votes - Voter
-GET /api/votes/verify/:hash - Vérifier un vote
-GET /api/votes/status/:election_id - Statut de vote
-GET /api/votes/election/:election_id - Tous les votes (anonymes)
-👤 Compte admin par défaut
+### election_options
+| Champ      | Type                  |
+|------------|----------------------|
+| id         | UUID                  |
+| election_id| UUID (FK vers elections) |
+| label      | VARCHAR               |
+| order      | INTEGER               |
+
+### votes
+| Champ       | Type                  |
+|------------|----------------------|
+| id          | UUID                  |
+| election_id | UUID (FK vers elections) |
+| user_id     | UUID (FK vers users) |
+| option_id   | UUID (FK vers election_options) |
+| zk_proof    | TEXT                  |
+| hash_vote   | VARCHAR (unique)      |
+| timestamp   | TIMESTAMP             |
+
+---
+
+## 🎯 API Endpoints
+
+### Auth
+
+| Méthode | Endpoint              | Description          |
+|---------|---------------------|--------------------|
+| POST    | `/api/auth/register` | Inscription         |
+| POST    | `/api/auth/login`    | Connexion           |
+| GET     | `/api/auth/profile`  | Profil (authentifié)|
+
+### Elections
+
+| Méthode | Endpoint                     | Description                  |
+|---------|-----------------------------|------------------------------|
+| GET     | `/api/elections`             | Liste des élections          |
+| GET     | `/api/elections/:id`         | Détails d'une élection       |
+| POST    | `/api/elections`             | Créer une élection (admin)   |
+| PUT     | `/api/elections/:id`         | Modifier une élection (admin)|
+| DELETE  | `/api/elections/:id`         | Supprimer une élection (admin)|
+| GET     | `/api/elections/:id/results`| Résultats d'une élection     |
+
+### Votes
+
+| Méthode | Endpoint            | Description               |
+|---------|-------------------|---------------------------|
+| POST    | `/api/votes`       | Voter pour une option     |
+| GET     | `/api/votes/verify/:hash`   | Détails d'un vote         |
+| POST    | `//api/votes/status/:election_id`       |  Statut de vote           |
+| GET     | `/api/votes/election/:election_id`   |Tous les votes (anonymes)  |
+
+---
+
+### 👤 Compte admin par défaut
+
 Email: admin@zkvote.com Mot de passe: admin123
 
 ⚠️ IMPORTANT: Changez ces identifiants en production !
