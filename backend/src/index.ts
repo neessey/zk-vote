@@ -90,7 +90,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ error: 'Erreur serveur interne' });
 });
 
-app.listen(PORT, () => {
+app.listen(Number(PORT), '0.0.0.0', () => {
     console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     console.log(`📡 API disponible sur http://localhost:${PORT}`);
     console.log(`🔒 Mode: ${process.env.NODE_ENV || 'development'}`);
