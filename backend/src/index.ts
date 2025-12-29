@@ -12,7 +12,7 @@ import voteRoutes from './routes/votes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 
 // Security middleware
 app.use(helmet());
@@ -90,11 +90,11 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     res.status(500).json({ error: 'Erreur serveur interne' });
 });
 
-app.listen(Number(PORT), '0.0.0.0', () => {
-    console.log(`🚀 Serveur démarré sur le port ${PORT}`);
-    console.log(`📡 API disponible sur http://localhost:${PORT}`);
-    console.log(`🔒 Mode: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🚂 Railway server running on port ${PORT}`);
-    console.log('✅ CORS configuré pour:', allowedOrigins);
+
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server running on port ${PORT}`);
 });
+
+
 export default app;
