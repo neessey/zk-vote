@@ -171,52 +171,8 @@ JWT - Authentification sécurisée
 bcrypt - Hachage des mots de passe
 RLS Supabase - Row Level Security
 
-
-📊 Schéma de la base de données
 ---
 
-## 📦 Base de données
-
-### users
-| Champ      | Type                        |
-|-----------|-----------------------------|
-| id        | UUID                        |
-| email     | VARCHAR                     |
-| password  | VARCHAR (hashé)             |
-| role      | VARCHAR (`admin` | `votant`) |
-| created_at| TIMESTAMP                   |
-
-### elections
-| Champ       | Type                  |
-|------------|----------------------|
-| id         | UUID                  |
-| titre      | VARCHAR               |
-| description| TEXT                  |
-| date_debut | TIMESTAMP             |
-| date_fin   | TIMESTAMP             |
-| active     | BOOLEAN               |
-| created_by | UUID (FK vers users)  |
-
-### election_options
-| Champ      | Type                  |
-|------------|----------------------|
-| id         | UUID                  |
-| election_id| UUID (FK vers elections) |
-| label      | VARCHAR               |
-| order      | INTEGER               |
-
-### votes
-| Champ       | Type                  |
-|------------|----------------------|
-| id          | UUID                  |
-| election_id | UUID (FK vers elections) |
-| user_id     | UUID (FK vers users) |
-| option_id   | UUID (FK vers election_options) |
-| zk_proof    | TEXT                  |
-| hash_vote   | VARCHAR (unique)      |
-| timestamp   | TIMESTAMP             |
-
----
 
 ## 🎯 API Endpoints
 
@@ -252,36 +208,23 @@ RLS Supabase - Row Level Security
 
 ### 👤 Compte admin par défaut
 
-Email: admin@zkvote.com Mot de passe: admin123
+Email: admin@zkvote.com Mot de passe: **admin123**
 
-⚠️ IMPORTANT: Changez ces identifiants en production !
+**⚠️ IMPORTANT**: Changez ces identifiants en production !
 
-📝 Notes sur les ZK-Proofs
+### 📝 Notes sur les ZK-Proofs
+
 L'implémentation actuelle des Zero-Knowledge Proofs est simplifiée à des fins de démonstration.
 
-Pour une utilisation en production, remplacez-la par une vraie bibliothèque ZK-SNARK :
 
-snarkjs - Bibliothèque JavaScript pour ZK-SNARKs
-circom - Langage pour créer des circuits ZK
-ZoKrates - Toolbox pour ZK-SNARKs
-🚀 Déploiement
-Backend
-Déployer sur Railway, Render, ou Heroku
-Configurer les variables d'environnement
-Utiliser PostgreSQL de production (Supabase)
-Frontend
-Déployer sur Vercel, Netlify, ou Cloudflare Pages
-Configurer NEXT_PUBLIC_API_URL
-Build automatique avec bun run build
-📄 License
-MIT
+### 🤝 Contribution
 
-🤝 Contribution
 Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou un PR.
 
-📧 Contact
+### 📧 Contact
+
 Pour toute question ou suggestion, contactez-nous !
 
-ZK-Vote - Vote sécurisé et anonyme avec les Zero-Knowledge Proofs 🔒
+### ZK-Vote - Vote sécurisé et anonyme avec les Zero-Knowledge Proofs 🔒
 
 
