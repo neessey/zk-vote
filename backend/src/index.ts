@@ -19,28 +19,28 @@ const PORT = Number(process.env.PORT) || 5000;
 // CORS configuration
 
 // Configuration CORS pour Railway + Vercel
-const allowedOrigins = [
-    'http://localhost:3000',                    // Développement local
-    process.env.FRONTEND_URL,                   // Vercel production
-    'https://zk-vote-sepia.vercel.app',            // Remplacez par votre URL
-    'https://zk-vote-git-main-devyans-projects-805b7991.vercel.app'    // Previews Vercel
-].filter(Boolean);
+const allowedOrigins: string[] = [
+    "http://localhost:3000",
+    "https://zk-vote-sepia.vercel.app",
+    "https://zk-vote-git-main-devyans-projects-805b7991.vercel.app"
+].filter((o): o is string => typeof o === "string");
+
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", req.headers.origin as string || "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);   // 👈 C'EST ÇA QUI MANQUAIT
+    }
+    next();
+});
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Autorise les requêtes sans origin (mobile, Postman, etc.)
-        if (!origin) return callback(null, true);
-
-        if (allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            console.log('❌ Origin non autorisée:', origin);
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: allowedOrigins,
+    credentials: true
 }));
 
 
