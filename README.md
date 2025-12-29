@@ -7,7 +7,7 @@ Une plateforme de vote électronique utilisant les Zero-Knowledge Proofs pour ga
  
 **Next.js 14** - Framework React
 
-**TypeScript** - Typage statique
+- **TypeScript** - Typage statique
 
 **Tailwind CSS** - Styling
 
